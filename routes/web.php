@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
 
     // Custom Routes
     Route::get('/calculator', [CustomController::class, 'calculator']);
+    Route::get('/tictactoe', [CustomController::class, 'tictactoe']);
 });
 
 require __DIR__.'/auth.php';

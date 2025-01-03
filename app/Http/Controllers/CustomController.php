@@ -14,4 +14,9 @@ class CustomController extends Controller
     {
         return Inertia::render('Custom/Calculator');
     }
+
+    public function Tictactoe(Request $request)
+    {
+        return Inertia::render('Custom/Tictactoe');
+    }
 }
