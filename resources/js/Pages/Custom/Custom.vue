@@ -37,7 +37,7 @@
 </script>
 
 <style lang="css" scoped>
-.style {
+    .style {
         max-width: 300px;
         margin: auto;
         text-align: center;
