@@ -3,6 +3,10 @@
         <input type="text" v-model="count" readonly />
         <button class="btn" @click="something()">Click</button>
         <button class="btn" @click="reset()">Reset</button>
+
+        <div>
+            <button class="btn" @click="apitest()">ApiTest</button>
+        </div>
     </div>
 </template>
 
@@ -22,7 +26,12 @@
 
             reset() {
                 this.count = 0;
-            }
+            },
+
+            async apitest() {
+                const response = await axios.get('/api/tic-tac-toe/reset');
+                this.data = response.data.winner;
+            },
         }
     }
 </script>
