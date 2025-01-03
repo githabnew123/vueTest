@@ -14,7 +14,8 @@ import { Head } from '@inertiajs/vue3';
                 >
                     <div class="p-6 text-gray-900">
                         <a href="calculator">Calculator</a> <br class="break">
-                        <a href="tictactoe">Tictactoe</a>
+                        <a href="tictactoe">Tictactoe</a> <br class="break">
+                        <a href="custom">Custom</a>
                     </div>
                 </div>
             </div>

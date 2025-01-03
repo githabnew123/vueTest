@@ -19,4 +19,9 @@ class CustomController extends Controller
     {
         return Inertia::render('Custom/Tictactoe');
     }
+
+    public function Custom(Request $request)
+    {
+        return Inertia::render('Custom/Custom');
+    }
 }
