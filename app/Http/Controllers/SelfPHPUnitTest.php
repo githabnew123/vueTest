@@ -28,6 +28,7 @@ class SelfPHPUnitTest extends Controller
      */
     public function store(Request $request)
     {
+        dd('work');
         // Validate the request
         $validated = $request->validate([
             'name' => 'required|string|max:255',
