@@ -28,7 +28,22 @@ class SelfPHPUnitTest extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+        ]);
+
+        // Create a new user
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']), // Hash the password
+        ]);
+
+        // Return the created user
+        return response()->json($user, 201);
     }
 
     /**
@@ -52,7 +67,25 @@ class SelfPHPUnitTest extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        // Validate the request
+        $validated = $request->validate([
+            'name' => 'sometimes|required|string|max:255',
+            'email' => 'sometimes|required|email|unique:users,email,' . $user->id,
+            'password' => 'sometimes|required|string|min:8',
+        ]);
+
+        // Update the user with validated data
+        $user->update([
+            'name' => $validated['name'] ?? $user->name,
+            'email' => $validated['email'] ?? $user->email,
+            'password' => isset($validated['password']) ? bcrypt($validated['password']) : $user->password,
+        ]);
+
+        // Return the updated user
+        return response()->json($user);
     }
 
     /**
@@ -60,6 +93,13 @@ class SelfPHPUnitTest extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        // Delete the user
+        $user->delete();
+
+        // Return a success message
+        return response()->json(['message' => 'User deleted successfully'], 200);
     }
 }
