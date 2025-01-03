@@ -27,8 +27,7 @@ class GameController extends Controller
     {
         $index = $request->input('index');
         $this->board[$index] = $this->currentPlayer;
-
-        // Check for a winner (logic omitted for brevity)
+        
         $this->winner = null;
 
         return response()->json([
