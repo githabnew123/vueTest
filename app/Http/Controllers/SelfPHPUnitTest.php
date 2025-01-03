@@ -12,7 +12,9 @@ class SelfPHPUnitTest extends Controller
      */
     public function index()
     {
-        return User::all();
+        $users = User::paginate(10);
+
+        return response()->json($users);
     }
 
     /**
